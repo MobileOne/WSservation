@@ -1,0 +1,3 @@
+mobile_one_w_sservation_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: MobileOneWSservationBundle:Default:index }

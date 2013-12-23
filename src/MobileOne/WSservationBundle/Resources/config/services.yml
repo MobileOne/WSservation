@@ -1,0 +1,7 @@
+parameters:
+#    mobile_one_w_sservation.example.class: MobileOne\WSservationBundle\Example
+
+services:
+#    mobile_one_w_sservation.example:
+#        class: %mobile_one_w_sservation.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,8 @@
+mobile_one_w_sservation:
+    resource: "@MobileOneWSservationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+MobileOne:
+    type: rest
+    resource: "@MobileOneWSservationBundle/Resources/config/routing_rest.yml"
+    prefix: /api

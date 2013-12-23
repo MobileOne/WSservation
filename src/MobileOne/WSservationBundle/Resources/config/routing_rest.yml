@@ -1,0 +1,4 @@
+user:
+    type: rest
+    resource: MobileOne\WSservationBundle\Controller\userController
+    name_prefix: api_
