@@ -1,6 +1,6 @@
 <?php
 namespace MobileOne\WSservationBundle\Controller;
-use MobileOne\WSservationBundle\Entity\UserType;
+
 use MobileOne\WSservationBundle\Entity\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +10,11 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\FOSRestBundle;
-class userController extends controller
+use MobileOne\WSservationBundle\Entity;
+use MobileOne\WSservationBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+class userController extends Controller
 {
 	/**
 	 * 
@@ -60,11 +64,8 @@ class userController extends controller
 		$repository = $this->container->get('doctrine')
 		->getManager()
 		->getRepository('MobileOneWSservationBundle:User');
-			
-		$user = $repository->findBy(array('email' => 'testEmail' ),
-									array('email' => 'desc'),
-									5,
-									0);
+		$user = $repository->findOneBy(array('email'=>$email));
+
 		$userPassword = $user->getPassword();
 		if($userPassword == $pass)
 		{
@@ -79,6 +80,29 @@ class userController extends controller
 		
 	}
 
+	public function postUserAction()
+	{
 	
+	    $request = $this->get('request');
+	    $content = json_decode($request->getContent());
+	
+	    $user = new User();
+	    $user  ->setFirstName($content->{'firstName'});
+	    $user  ->setLastName($content->{'lastName'});
+	    $user  ->setEmail($content->{'email'});
+	    $user  ->setPassword($content->{'password'});
+	
+	
+	
+	    // Persist les données
+	    $em = $this->getDoctrine()->getManager();
+	    $em->persist($user);
+	    $em->flush();
+	
+	
+	    return $user;
+	
+	
+	  }
 
 }
