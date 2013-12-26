@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use FOS\RestBundle\FOSRestBundle;
 use MobileOne\WSservationBundle\Entity;
 use MobileOne\WSservationBundle\Entity\User;
+use MobileOne\WSservationBundle\Entity\Report;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class userController extends Controller
@@ -103,6 +104,57 @@ class userController extends Controller
 	    return $user;
 	
 	
+	  }
+	  
+	  
+	  public function postReportAction()
+	  {
+	  	
+	  	$request = $this->get('request');
+	  	$content = json_decode($request->getContent());
+	  	
+	  	$repository = $this->container->get('doctrine')
+		->getManager()
+		->getRepository('MobileOneWSservationBundle:User');
+			
+		$user = $repository->find($content -> {'id'});
+		
+	  	$report = new Report();
+	  	
+	  	$report -> setDate(new \DateTime());
+	  	$report -> setUser($user);
+	  	$report -> setDescription($content -> {'description'});
+	  	
+	  	$em = $this->getDoctrine()->getManager();
+	  	$em->persist($report);
+	  	$em->flush();
+	  	return $report;
+	  	
+	  }
+	  
+	  public function getUserReportAction($id)
+	  {
+// 	  	$em = $this->$this->container->get('doctrine')
+// 	  	->getManager();
+	  	$repositoryUser = $this->container->get('doctrine')
+	  							->getManager()
+	  							->getRepository('MobileOneWSservationBundle:User');
+	  	
+		$repositoryReports = 	$this->container->get('doctrine')
+	  							->getManager()
+	  							->getRepository('MobileOneWSservationBundle:Report');
+	  	  		
+	  	$user = $repositoryUser->find($id);
+	  	
+	  	
+
+	  	$reports = $repositoryReports -> findBy(array('user' => $user),
+                                     array('date' => 'desc')
+	  			
+                                    );
+	  	
+	  	
+	  	return $reports;
 	  }
 
 }

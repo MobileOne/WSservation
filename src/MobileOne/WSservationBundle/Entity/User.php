@@ -1,7 +1,7 @@
 <?php
 
 namespace MobileOne\WSservationBundle\Entity;
-use FOS\UserBundle\Entity\User as BaseUser;
+
 use Symfony\Component\Validator\Constraints\DateTime;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
