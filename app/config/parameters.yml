@@ -1,3 +1,19 @@
+#parameters:
+#    database_driver:   pdo_mysql
+#    database_host:     mysql.hostinger.fr
+#    database_port:     ~
+#    database_name:     u372305399_mobil
+#    database_user:     u372305399_root
+#    database_password: colakaya123
+#
+#    mailer_transport:  smtp
+#    mailer_host:       localhost
+#    mailer_user:       ~
+#    mailer_password:   ~
+#
+#    locale:            en
+#    secret:            ThisTokenIsNotSoSecretChangeIt
+
 parameters:
     database_driver:   pdo_mysql
     database_host:     localhost
@@ -13,3 +29,21 @@ parameters:
 
     locale:            en
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    
+#parameters:
+#    database_driver:   pdo_mysql
+#    database_host:     mysql51-109.perso
+#    database_port:     ~
+#    database_name:     chronomumobile
+#    database_user:     chronomumobile
+#    database_password: mobileone123
+#
+#    mailer_transport:  smtp
+#    mailer_host:       localhost
+#    mailer_user:       ~
+#    mailer_password:   ~
+#
+#    locale:            en
+#    secret:            ThisTokenIsNotSoSecretChangeIt
+#    
